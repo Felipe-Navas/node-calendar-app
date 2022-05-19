@@ -27,7 +27,9 @@ This README would normally document whatever steps are necessary to get your app
   - `npm test`
 
 - Dependencies
-    - "express": "^4.18.1"
+    - "dotenv": "^16.0.1",
+    - "express": "^4.18.1",
+    - "express-validator": "^6.14.0"
 
 ### Contribution guidelines
 
