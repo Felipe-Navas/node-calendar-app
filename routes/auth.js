@@ -5,6 +5,7 @@ const {
   loginUser,
   revalidateToken,
 } = require('../controllers/auth')
+const { validateFields } = require('../middlewares/field-validator')
 const router = Router()
 
 router.post(
@@ -15,6 +16,7 @@ router.post(
     check('password', 'Password must be at least 6 of length').isLength({
       min: 6,
     }),
+    validateFields,
   ],
   createUser
 )
@@ -26,6 +28,7 @@ router.post(
     check('password', 'Password must be at least 6 of length').isLength({
       min: 6,
     }),
+    validateFields,
   ],
   loginUser
 )
