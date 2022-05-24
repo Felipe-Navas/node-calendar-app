@@ -27,9 +27,14 @@ This README would normally document whatever steps are necessary to get your app
   - `npm test`
 
 - Dependencies
+    - "bcryptjs": "^2.4.3",
+    - "cors": "^2.8.5",
     - "dotenv": "^16.0.1",
     - "express": "^4.18.1",
-    - "express-validator": "^6.14.0"
+    - "express-validator": "^6.14.0",
+    - "jsonwebtoken": "^8.5.1",
+    - "moment": "^2.29.3",
+    - "mongoose": "^6.3.3"
 
 ### Contribution guidelines
 

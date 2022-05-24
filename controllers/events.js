@@ -30,18 +30,82 @@ const createEvent = async (req, res = response) => {
   }
 }
 
-const updateEvent = (req, res = response) => {
-  res.json({
-    ok: true,
-    msg: 'updateEvent',
-  })
+const updateEvent = async (req, res = response) => {
+  const eventId = req.params.id
+  const uid = req.uid
+
+  try {
+    const event = await Event.findById(eventId)
+
+    if (!event) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'Event not found',
+      })
+    }
+
+    if (event.user.toString() !== uid) {
+      return res.status(401).json({
+        ok: false,
+        msg: 'Not authorized',
+      })
+    }
+
+    const newEvent = {
+      ...req.body,
+      user: uid,
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent, {
+      new: true,
+    })
+
+    res.json({
+      ok: true,
+      event: updatedEvent,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      ok: false,
+      msg: 'Internal server error',
+    })
+  }
 }
 
-const deleteEvent = (req, res = response) => {
-  res.json({
-    ok: true,
-    msg: 'deleteEvent',
-  })
+const deleteEvent = async (req, res = response) => {
+  const eventId = req.params.id
+  const uid = req.uid
+
+  try {
+    const event = await Event.findById(eventId)
+
+    if (!event) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'Event not found',
+      })
+    }
+
+    if (event.user.toString() !== uid) {
+      return res.status(401).json({
+        ok: false,
+        msg: 'Not authorized',
+      })
+    }
+
+    await Event.findByIdAndDelete(eventId)
+
+    res.json({
+      ok: true,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      ok: false,
+      msg: 'Internal server error',
+    })
+  }
 }
 
 module.exports = {
