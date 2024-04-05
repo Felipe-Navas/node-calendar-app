@@ -7,9 +7,17 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felipe-Navas/node-calendar-app.git"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Felipe Navas",
+  "bugs": {
+    "url": "https://github.com/Felipe-Navas/node-calendar-app/issues"
+  },
+  "homepage": "https://github.com/Felipe-Navas/node-calendar-app#readme",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
