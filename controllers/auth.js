@@ -12,7 +12,7 @@ const createUser = async (req, res = response) => {
     if (user) {
       return res.status(400).json({
         ok: false,
-        msg: 'User already exists',
+        msg: 'User already exists'
       })
     }
 
@@ -30,13 +30,13 @@ const createUser = async (req, res = response) => {
       msg: 'User created',
       uid: user._id,
       name: user.name,
-      token,
+      token
     })
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Error, try again or contact the administrator',
+      msg: 'Error, try again or contact the administrator'
     })
   }
 }
@@ -50,7 +50,7 @@ const loginUser = async (req, res = response) => {
     if (!user) {
       return res.status(400).json({
         ok: false,
-        msg: 'User not found',
+        msg: 'User not found'
       })
     }
 
@@ -59,7 +59,7 @@ const loginUser = async (req, res = response) => {
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
-        msg: 'Invalid password',
+        msg: 'Invalid password'
       })
     }
 
@@ -70,13 +70,13 @@ const loginUser = async (req, res = response) => {
       msg: 'login',
       uid: user._id,
       name: user.name,
-      token,
+      token
     })
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Error, try again or contact the administrator',
+      msg: 'Error, try again or contact the administrator'
     })
   }
 }
@@ -90,12 +90,12 @@ const revalidateToken = async (req, res = response) => {
     ok: true,
     token,
     uid,
-    name,
+    name
   })
 }
 
 module.exports = {
   createUser,
   loginUser,
-  revalidateToken,
+  revalidateToken
 }
