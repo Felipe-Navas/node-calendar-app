@@ -6,7 +6,7 @@ const getEvents = async (req, res = response) => {
 
   res.json({
     ok: true,
-    events,
+    events
   })
 }
 
@@ -19,13 +19,13 @@ const createEvent = async (req, res = response) => {
     const dbEvent = await event.save()
     res.json({
       ok: true,
-      event: dbEvent,
+      event: dbEvent
     })
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Internal server error',
+      msg: 'Internal server error'
     })
   }
 }
@@ -40,35 +40,35 @@ const updateEvent = async (req, res = response) => {
     if (!event) {
       return res.status(404).json({
         ok: false,
-        msg: 'Event not found',
+        msg: 'Event not found'
       })
     }
 
     if (event.user.toString() !== uid) {
       return res.status(401).json({
         ok: false,
-        msg: 'Not authorized',
+        msg: 'Not authorized'
       })
     }
 
     const newEvent = {
       ...req.body,
-      user: uid,
+      user: uid
     }
 
     const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent, {
-      new: true,
+      new: true
     })
 
     res.json({
       ok: true,
-      event: updatedEvent,
+      event: updatedEvent
     })
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Internal server error',
+      msg: 'Internal server error'
     })
   }
 }
@@ -83,27 +83,27 @@ const deleteEvent = async (req, res = response) => {
     if (!event) {
       return res.status(404).json({
         ok: false,
-        msg: 'Event not found',
+        msg: 'Event not found'
       })
     }
 
     if (event.user.toString() !== uid) {
       return res.status(401).json({
         ok: false,
-        msg: 'Not authorized',
+        msg: 'Not authorized'
       })
     }
 
     await Event.findByIdAndDelete(eventId)
 
     res.json({
-      ok: true,
+      ok: true
     })
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Internal server error',
+      msg: 'Internal server error'
     })
   }
 }
@@ -112,5 +112,5 @@ module.exports = {
   getEvents,
   createEvent,
   updateEvent,
-  deleteEvent,
+  deleteEvent
 }

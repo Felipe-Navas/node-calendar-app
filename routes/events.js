@@ -4,7 +4,7 @@ const {
   getEvents,
   createEvent,
   updateEvent,
-  deleteEvent,
+  deleteEvent
 } = require('../controllers/events')
 const { isDate } = require('../helpers/isDate')
 const { validateFields } = require('../middlewares/validate-field')
@@ -21,7 +21,7 @@ router.post(
     check('title', 'The title is mandatory').not().isEmpty(),
     check('start', 'The start date is mandatory').custom(isDate),
     check('end', 'The end date is mandatory').custom(isDate),
-    validateFields,
+    validateFields
   ],
   createEvent
 )

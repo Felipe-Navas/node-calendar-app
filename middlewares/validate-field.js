@@ -7,7 +7,7 @@ const validateFields = (req, res = response, next) => {
     return res.status(400).json({
       ok: false,
       msg: 'Validation failed',
-      errors: errors.mapped(),
+      errors: errors.mapped()
     })
   }
 
@@ -15,5 +15,5 @@ const validateFields = (req, res = response, next) => {
 }
 
 module.exports = {
-  validateFields,
+  validateFields
 }
